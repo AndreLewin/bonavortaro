@@ -1,0 +1,8 @@
+{% extends 'vortaro/bazo.html' %}
+
+{% block enhavo %}
+    <div class="radiko">
+        <h3><a href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a></h3>
+        <!-- TODO: Meti kelkajn proponojn sube <p> radiko.proponoj[x].per.eraro|linebreaksbr </p> -->
+    </div>
+{% endblock %}

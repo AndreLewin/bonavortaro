@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Radiko(models.Model):
-    eraro = models.CharField(max_length=200) # TODO : Nun teksto, eble poste aro de radikoj
+    eraro = models.CharField(max_length=30, unique=True)
     poroj = models.FloatField(default=0)
     malporoj = models.FloatField(default=0)
 
