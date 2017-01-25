@@ -26,12 +26,12 @@ h1, h2, h3, h4 {
     float: right;
 }
 
-.post-form textarea, .post-form input {
+.radiko-form textarea, .radiko-form input {
     width: 100%;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+    color: #000000;
     float: right;
     font-size: 26pt;
     margin-right: 20px;
