@@ -4,6 +4,7 @@
     {% for radiko in radikoaro %}
         <div class="radiko">
             <h3><a href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a></h3>
+            <a class="btn btn-default" href="{% url 'forigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
             <!-- TODO: Meti kelkajn proponojn sube <p> radiko.proponoj[x].per.eraro|linebreaksbr </p> -->
         </div>
     {% endfor %}

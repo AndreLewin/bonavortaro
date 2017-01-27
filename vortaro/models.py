@@ -10,6 +10,8 @@ class Radiko(models.Model):
     duolingeco = models.BooleanField(default=False)
     oftecrango = models.IntegerField(default=0)
 
+    plendoj = models.IntegerField(default=0)
+
     def __str__(self):
         return self.radikaro
 
