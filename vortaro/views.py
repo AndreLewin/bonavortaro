@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Radiko
-from .forms import RadikoFormularo
+from .forms import RadikoFormularo, ProponoFormularo
 
 
 # Create your views here.
@@ -30,8 +30,23 @@ def aldonpaĝo(request):
 
 
 # TODO : @NurPorKontrolantoj
-# TODO : Paĝo por kontrolantoj ; Radikoj kiuj havas multajn plendojn aperas unue
-def forigo(request, URLeraro):
+# TODO : Paĝo por kontrolistoj ; Radikoj kiuj havas multajn plendojn aperas unue
+def radikforigo(request, URLeraro):
     radiko = get_object_or_404(Radiko, eraro=URLeraro)
     radiko.delete()
     return redirect('ĉefpaĝURLo')
+
+
+def proponaldono(request, URLeraro):
+    radiko = get_object_or_404(Radiko, eraro=URLeraro)
+    if request.method == "POST":
+        formularo = ProponoFormularo(request.POST)
+        if formularo.is_valid():
+            propono = formularo.save(commit=False)
+            propono.por = radiko
+            # TODO : Postaj aferoj
+            propono.save()
+            return redirect('radikpaĝURLo', URLeraro=radiko.eraro)
+    else:
+        formularo = ProponoFormularo()
+    return render(request, 'vortaro/proponaldonpaĝo.html', {'formularo': formularo})

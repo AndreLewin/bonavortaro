@@ -1,0 +1,9 @@
+{% extends 'vortaro/bazo.html' %}
+
+{% block enhavo %}
+    <h3>Nova propono</h3>
+    <form method="POST" class="post-form"> {% csrf_token %}
+        {{ formularo.as_p }}
+        <button type="submit" class="save btn btn-default">Konservi</button>
+    </form>
+{% endblock %}

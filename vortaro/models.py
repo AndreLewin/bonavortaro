@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Radiko(models.Model):
-    eraro = models.CharField(max_length=30, unique=True)
+    eraro = models.CharField(max_length=30, unique=True, default=None)
     poroj = models.FloatField(default=0)
     malporoj = models.FloatField(default=0)
 
@@ -13,11 +13,19 @@ class Radiko(models.Model):
     plendoj = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.radikaro
+        return self.eraro
+
 
 class Propono(models.Model):
     por = models.ForeignKey('vortaro.Radiko', related_name='proponoj')
-    per = models.ForeignKey('vortaro.Radiko', related_name='proponojDe')
+    eraro = models.CharField(max_length=30, unique=True, default=None)
+    poroj = models.FloatField(default=0)
+    malporoj = models.FloatField(default=0)
 
-    poroj = models.FloatField()
-    malporoj = models.FloatField()
+    plendoj = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ('por','eraro')
+
+    def __str__(self):
+        return self.eraro

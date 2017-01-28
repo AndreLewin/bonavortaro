@@ -3,6 +3,14 @@
 {% block enhavo %}
     <div class="radiko">
         <h3><a href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a></h3>
-        <!-- TODO: Meti kelkajn proponojn sube <p> radiko.proponoj[x].per.eraro|linebreaksbr </p> -->
+        <hr>
+        <a class="btn btn-default" href="{% url 'proponaldonURLo' URLeraro=radiko.eraro %}">Aldoni proponon</a>
+        {% for propono in radiko.proponoj.all %}
+            <div class="propono">
+                <p>{{ propono.eraro|linebreaks }}</p>
+            </div>
+        {% empty %}
+            <p>Ankoraŭ ne troviĝas proponoj :(</p>
+        {% endfor %}
     </div>
 {% endblock %}

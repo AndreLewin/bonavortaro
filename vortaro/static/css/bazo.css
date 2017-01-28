@@ -45,3 +45,7 @@ h1, h2, h3, h4 {
 .radiko h1 a, .radiko h1 a:visited {
     color: #000000;
 }
+
+.propono {
+    margin: 20px 0px 20px 20px;
+}

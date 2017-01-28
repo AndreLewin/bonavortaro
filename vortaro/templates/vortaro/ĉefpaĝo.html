@@ -4,8 +4,14 @@
     {% for radiko in radikoaro %}
         <div class="radiko">
             <h3><a href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a></h3>
-            <a class="btn btn-default" href="{% url 'forigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-            <!-- TODO: Meti kelkajn proponojn sube <p> radiko.proponoj[x].per.eraro|linebreaksbr </p> -->
+            <a class="btn btn-default" href="{% url 'radikforigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
+            {% for propono in radiko.proponoj.all %}
+                <div class="komento">
+                    <p>{{ propono.eraro|linebreaks }}</p>
+                </div>
+            {% empty %}
+                <p>Ankoraŭ ne troviĝas proponoj :(</p>
+            {% endfor %}
         </div>
     {% endfor %}
 {% endblock %}
