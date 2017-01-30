@@ -2,27 +2,35 @@
 
 {% block enhavo %}
     {% for radiko in radikoaro %}
-        <div class="radiko well">
+        <div class="well">
             <div class="row">
                 <div class="span4">
                     <a class="pull-left" href="{% url 'radikforigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h4 class="pull-left" href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</h4>
-                    <a class="pull-left" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                    <a class="pull-left" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
-                    <a class="pull-left" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
-                    <a class="pull-left" href="{% url 'proponaldonURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                    <a class="pull-left btn btn-success btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                    <a class="pull-left btn btn-danger btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                    <a class="pull-left btn btn-info btn-default" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    <a class="pull-left btn btn-link" href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a>
                 </div>
             </div>
             {% for propono in radiko.proponoj.all %}
-                <a class="pull-left">{{ propono.eraro|linebreaks }}</a>
-                <a class="pull-left" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                <a class="pull-left" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
-                <a class="pull-left" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+            <div class="row">
+                <a class="pull-left btn btn-success btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
+                <a class="pull-left btn btn-danger btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                <a class="pull-left btn btn-link btn-sm" href="#">{{ propono.eraro|linebreaks }}</a>
                 <br/>
                 <br/>
+            </div>
             {% empty %}
+            <div class="row">
                 <p>Ankoraŭ ne troviĝas proponoj :(</p>
+            </div>
             {% endfor %}
+
+            <div class="row">
+                <a class="pull-left btn btn-primary" href="{% url 'proponaldonURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-plus-sign"> Proponi</span></a>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
