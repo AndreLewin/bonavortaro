@@ -7,6 +7,7 @@
         <a class="btn btn-default" href="{% url 'proponaldonURLo' URLeraro=radiko.eraro %}">Aldoni proponon</a>
         {% for propono in radiko.proponoj.all %}
             <div class="propono">
+                <a class="btn btn-default" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
                 <p>{{ propono.eraro|linebreaks }}</p>
             </div>
         {% empty %}

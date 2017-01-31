@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Radiko
+from django.http import HttpResponseRedirect
+from .models import Radiko, Propono
 from .forms import RadikoFormularo, ProponoFormularo
 
 
@@ -34,7 +35,8 @@ def aldonpaĝo(request):
 def radikforigo(request, URLeraro):
     radiko = get_object_or_404(Radiko, eraro=URLeraro)
     radiko.delete()
-    return redirect('ĉefpaĝURLo')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return redirect('ĉefpaĝURLo')
 
 
 def proponaldono(request, URLeraro):
@@ -50,3 +52,11 @@ def proponaldono(request, URLeraro):
     else:
         formularo = ProponoFormularo()
     return render(request, 'vortaro/proponaldonpaĝo.html', {'formularo': formularo})
+
+
+def proponforigo(request, radikURLeraro, proponURLeraro):
+    propono = get_object_or_404(Propono, eraro=proponURLeraro)
+    radiko_eraro = propono.por.eraro # Por konservi la eraro-n post la forigo
+    propono.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)

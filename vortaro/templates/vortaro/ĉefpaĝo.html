@@ -5,7 +5,7 @@
         <div class="well">
             <div class="row">
                 <div class="span4">
-                    <a class="pull-left" href="{% url 'radikforigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="pull-left btn btn-default" href="{% url 'radikforigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
                     <a class="pull-left btn btn-success btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
                     <a class="pull-left btn btn-danger btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                     <a class="pull-left btn btn-info btn-default" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
@@ -14,11 +14,12 @@
             </div>
             {% for propono in radiko.proponoj.all %}
             <div class="row">
+                <a class="pull-left btn btn-default btn-sm" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
                 <a class="pull-left btn btn-success btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
                 <a class="pull-left btn btn-danger btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                 <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
                 <a class="pull-left btn btn-link btn-sm" href="#">{{ propono.eraro|linebreaks }}</a>
+                <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
                 <br/>
                 <br/>
             </div>
