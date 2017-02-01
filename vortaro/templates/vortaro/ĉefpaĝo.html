@@ -6,10 +6,11 @@
             <div class="row">
                 <div class="span4">
                     <a class="pull-left btn btn-default" href="{% url 'radikforigURLo' URLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="pull-left btn btn-success btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                    <a class="pull-left btn btn-success btn-default" href="{% url 'radikporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
                     <a class="pull-left btn btn-danger btn-default" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                     <a class="pull-left btn btn-info btn-default" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
                     <a class="pull-left btn btn-link" href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a>
+                    <p>poroj: {{ radiko.poroj }} ; malporoj : {{radiko.malporoj }} ; sume: {{ radiko.poroj|add:radiko.malporoj}}</p>
                 </div>
             </div>
             {% for propono in radiko.proponoj.all %}

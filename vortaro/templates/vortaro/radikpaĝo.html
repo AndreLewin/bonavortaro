@@ -4,7 +4,7 @@
     <div class="radiko">
         <h3><a href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a></h3>
         <hr>
-        <a class="btn btn-default" href="{% url 'proponaldonURLo' URLeraro=radiko.eraro %}">Aldoni proponon</a>
+        <a class="btn btn-default" href="{% url 'proponaldonURLo' radikURLeraro=radiko.eraro %}">Aldoni proponon</a>
         {% for propono in radiko.proponoj.all %}
             <div class="propono">
                 <a class="btn btn-default" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
