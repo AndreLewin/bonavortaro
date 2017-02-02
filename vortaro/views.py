@@ -69,3 +69,12 @@ def radikporo(request, radikURLeraro):
     radiko.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+
+
+# TODO : Kontroli ĉu la uzanto jam voĉdonis
+def radikmalporo(request, radikURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
+    radiko.malporoj = radiko.malporoj + 1
+    radiko.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
