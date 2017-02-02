@@ -6,7 +6,7 @@ from .forms import RadikoFormularo, ProponoFormularo
 
 # Create your views here.
 def ĉefpaĝo(request):
-    radikoaro = Radiko.objects.order_by('malporoj') # Xoaro = array de Xo
+    radikoaro = Radiko.objects.order_by('boneco') # pli malboneca (malgranda) unue
     return render(request, 'vortaro/ĉefpaĝo.html', {'radikoaro': radikoaro})
 
 
@@ -67,6 +67,7 @@ def proponforigo(request, radikURLeraro, proponURLeraro):
 def radikporo(request, radikURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     radiko.poroj = radiko.poroj + 1
+    radiko.boneco = kalkuliBonecon(radiko.poroj, radiko.malporoj)
     radiko.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
@@ -76,6 +77,7 @@ def radikporo(request, radikURLeraro):
 def radikmalporo(request, radikURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     radiko.malporoj = radiko.malporoj + 1
+    radiko.boneco = kalkuliBonecon(radiko.poroj, radiko.malporoj)
     radiko.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
@@ -86,6 +88,7 @@ def proponporo(request, radikURLeraro, proponURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     propono = get_object_or_404(Propono, por=radiko.pk, eraro=proponURLeraro)
     propono.poroj = propono.poroj + 1
+    propono.boneco = kalkuliBonecon(propono.poroj, propono.malporoj)
     propono.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
@@ -96,6 +99,11 @@ def proponmalporo(request, radikURLeraro, proponURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     propono = get_object_or_404(Propono, por=radiko.pk, eraro=proponURLeraro)
     propono.malporoj = propono.malporoj + 1
+    propono.boneco = kalkuliBonecon(propono.poroj, propono.malporoj)
     propono.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+
+
+def kalkuliBonecon(poroj, malporoj):
+    return poroj / (poroj + malporoj)
