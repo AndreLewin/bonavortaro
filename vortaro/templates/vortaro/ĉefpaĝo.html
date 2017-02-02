@@ -10,17 +10,18 @@
                     <a class="pull-left btn btn-danger btn-default" href="{% url 'radikmalporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                     <a class="pull-left btn btn-info btn-default" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
                     <a class="pull-left btn btn-link" href="{% url 'radikpaĝURLo' URLeraro=radiko.eraro %}">{{ radiko.eraro }}</a>
-                    <p>poroj: {{ radiko.poroj }} ; malporoj : {{radiko.malporoj }} ; sume: {{ radiko.poroj|add:radiko.malporoj}}</p>
+                    <p>poroj: {{ radiko.poroj }} ; malporoj : {{ radiko.malporoj }} ; sume: {{ radiko.poroj|add:radiko.malporoj}}</p>
                 </div>
             </div>
             {% for propono in radiko.proponoj.all %}
             <div class="row">
                 <a class="pull-left btn btn-default btn-sm" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="pull-left btn btn-success btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                <a class="pull-left btn btn-danger btn-sm" href="#"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                <a class="pull-left btn btn-success btn-sm" href="{% url 'proponporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                <a class="pull-left btn btn-danger btn-sm" href="{% url 'proponmalporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                 <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
                 <a class="pull-left btn btn-link btn-sm" href="#">{{ propono.eraro|linebreaks }}</a>
                 <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
+                <p>poroj: {{ propono.poroj }} ; malporoj : {{ propono.malporoj }} ; sume: {{ propono.poroj|add:propono.malporoj}}</p>
                 <br/>
                 <br/>
             </div>

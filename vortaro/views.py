@@ -55,7 +55,8 @@ def proponaldono(request, URLeraro):
 
 
 def proponforigo(request, radikURLeraro, proponURLeraro):
-    propono = get_object_or_404(Propono, eraro=proponURLeraro)
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
+    propono = get_object_or_404(Propono, por=radiko.pk, eraro=proponURLeraro)
     radiko_eraro = propono.por.eraro # Por konservi la eraro-n post la forigo
     propono.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -76,5 +77,25 @@ def radikmalporo(request, radikURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     radiko.malporoj = radiko.malporoj + 1
     radiko.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+
+
+# TODO : Kontroli ĉu la uzanto jam voĉdonis
+def proponporo(request, radikURLeraro, proponURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
+    propono = get_object_or_404(Propono, por=radiko.pk, eraro=proponURLeraro)
+    propono.poroj = propono.poroj + 1
+    propono.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+
+
+# TODO : Kontroli ĉu la uzanto jam voĉdonis
+def proponmalporo(request, radikURLeraro, proponURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
+    propono = get_object_or_404(Propono, por=radiko.pk, eraro=proponURLeraro)
+    propono.malporoj = propono.malporoj + 1
+    propono.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
