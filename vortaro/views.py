@@ -10,8 +10,8 @@ def ĉefpaĝo(request):
     return render(request, 'vortaro/ĉefpaĝo.html', {'radikoaro': radikoaro})
 
 
-def radikpaĝo(request, URLeraro):
-    radiko = get_object_or_404(Radiko, eraro=URLeraro)
+def radikpaĝo(request, radikURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     return render(request, 'vortaro/radikpaĝo.html', {'radiko': radiko})
 
 
@@ -23,7 +23,7 @@ def aldonpaĝo(request):
             radiko = formularo.save(commit=False)
             # TODO : Eble poste formularo.aŭtoro = request.user
             radiko.save()
-            return redirect('radikpaĝURLo', URLeraro=radiko.eraro)
+            return redirect('radikpaĝURLo', radikURLeraro=radiko.eraro)
     # Se la formularo estas nova (paĝo ĵus vizitita)
     else:
         formularo = RadikoFormularo()
@@ -32,15 +32,15 @@ def aldonpaĝo(request):
 
 # TODO : @NurPorKontrolantoj
 # TODO : Paĝo por kontrolistoj ; Radikoj kiuj havas multajn plendojn aperas unue
-def radikforigo(request, URLeraro):
-    radiko = get_object_or_404(Radiko, eraro=URLeraro)
+def radikforigo(request, radikURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     radiko.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('ĉefpaĝURLo')
 
 
-def proponaldono(request, URLeraro):
-    radiko = get_object_or_404(Radiko, eraro=URLeraro)
+def proponaldono(request, radikURLeraro):
+    radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     if request.method == "POST":
         formularo = ProponoFormularo(request.POST)
         if formularo.is_valid():
@@ -48,7 +48,7 @@ def proponaldono(request, URLeraro):
             propono.por = radiko
             # TODO : Postaj aferoj
             propono.save()
-            return redirect('radikpaĝURLo', URLeraro=radiko.eraro)
+            return redirect('radikpaĝURLo', radikURLeraro=radiko.eraro)
     else:
         formularo = ProponoFormularo()
     return render(request, 'vortaro/proponaldonpaĝo.html', {'formularo': formularo})
@@ -60,7 +60,7 @@ def proponforigo(request, radikURLeraro, proponURLeraro):
     radiko_eraro = propono.por.eraro # Por konservi la eraro-n post la forigo
     propono.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+    # return redirect('radikpaĝURLo', radikURLeraro=radiko_eraro)
 
 
 # TODO : Kontroli ĉu la uzanto jam voĉdonis
@@ -70,7 +70,7 @@ def radikporo(request, radikURLeraro):
     radiko.boneco = kalkuliBonecon(radiko.poroj, radiko.malporoj)
     radiko.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+    # return redirect('radikpaĝURLo', radikURLeraro=radiko_eraro)
 
 
 # TODO : Kontroli ĉu la uzanto jam voĉdonis
@@ -80,7 +80,7 @@ def radikmalporo(request, radikURLeraro):
     radiko.boneco = kalkuliBonecon(radiko.poroj, radiko.malporoj)
     radiko.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+    # return redirect('radikpaĝURLo', radikURLeraro=radiko_eraro)
 
 
 # TODO : Kontroli ĉu la uzanto jam voĉdonis
@@ -91,7 +91,7 @@ def proponporo(request, radikURLeraro, proponURLeraro):
     propono.boneco = kalkuliBonecon(propono.poroj, propono.malporoj)
     propono.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+    # return redirect('radikpaĝURLo', radikURLeraro=radiko_eraro)
 
 
 # TODO : Kontroli ĉu la uzanto jam voĉdonis
@@ -102,7 +102,7 @@ def proponmalporo(request, radikURLeraro, proponURLeraro):
     propono.boneco = kalkuliBonecon(propono.poroj, propono.malporoj)
     propono.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    # return redirect('radikpaĝURLo', URLeraro=radiko_eraro)
+    # return redirect('radikpaĝURLo', radikURLeraro=radiko_eraro)
 
 
 def kalkuliBonecon(poroj, malporoj):
