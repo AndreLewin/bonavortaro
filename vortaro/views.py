@@ -35,6 +35,7 @@ def aldonpaĝo(request):
 def radikforigo(request, radikURLeraro):
     radiko = get_object_or_404(Radiko, eraro=radikURLeraro)
     radiko.delete()
+    # TODO : Ĉu forigas de la datumbazo ligitaj proponoj?
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     # return redirect('ĉefpaĝURLo')
 

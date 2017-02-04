@@ -49,3 +49,39 @@ h1, h2, h3, h4 {
 .propono {
     margin: 20px 0px 20px 20px;
 }
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.428571429;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: white;
+    background-color: #5cb85c;
+}
+.panel-green > a {
+    color: #5cb85c;
+}
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+/* Overrides list-group-item from Bootstrap */
+.list-group {
+    paddin: 0px;
+    margin: 0px;
+}
+
+.radiknomo {
+    font-family: 'Ubuntu', sans-serif;
+    size: 30px;
+}

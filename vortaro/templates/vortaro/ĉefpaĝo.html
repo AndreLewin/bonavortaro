@@ -1,38 +1,47 @@
 {% extends 'vortaro/bazo.html' %}
 
+<!--
+ TODO :
+ - Krei klason por radiknomoj kaj proponnomoj
+ - Ŝanĝi background-color depende de la boneco
+ - Centrigi la butonojn
+ - Meti atentigi kaj forigi dekstren
+ - Komenti la butononjn (kiun oni povas vidi kiam oni superumas) (por helpi misvidantojn)
+ - Forigi padding? de panel-body?
+-->
+
 {% block enhavo %}
     {% for radiko in radikoaro %}
-        <div class="well">
-            <div class="row">
-                <div class="span4">
-                    <a class="pull-left btn btn-default" href="{% url 'radikforigURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="pull-left btn btn-success btn-default" href="{% url 'radikporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                    <a class="pull-left btn btn-danger btn-default" href="{% url 'radikmalporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
-                    <a class="pull-left btn btn-info btn-default" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
-                    <a class="pull-left btn btn-link" href="{% url 'radikpaĝURLo' radikURLeraro=radiko.eraro %}">{{ radiko.eraro }}</a>
-                    <p>poroj: {{ radiko.poroj }} ; malporoj : {{ radiko.malporoj }} ; boneco: {{ radiko.boneco }}</p>
+        <div class="row">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <a class="pull-left btn btn-default btn-circle" href="{% url 'radikforigURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="pull-left btn btn-default btn-success btn-circle" href="{% url 'radikporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                    <a class="pull-left btn btn-default btn-danger btn-circle" href="{% url 'radikmalporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                    <a class="pull-left btn btn-default btn-info btn-circle" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                    <a class="pull-left radiknomo" href="{% url 'radikpaĝURLo' radikURLeraro=radiko.eraro %}">{{ radiko.eraro }}</a>
+                    poroj: {{ radiko.poroj }} ; malporoj : {{ radiko.malporoj }} ; boneco: {{ radiko.boneco }}
+                    <a class="pull-right btn btn-primary btn-circle" href="{% url 'proponaldonURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-plus-sign"></span></a>
                 </div>
-            </div>
-            {% for propono in radiko.proponoj.all|dictsortreversed:"boneco" %}
-            <div class="row">
-                <a class="pull-left btn btn-default btn-sm" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="pull-left btn btn-success btn-sm" href="{% url 'proponporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
-                <a class="pull-left btn btn-danger btn-sm" href="{% url 'proponmalporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
-                <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
-                <a class="pull-left btn btn-link btn-sm" href="#">{{ propono.eraro|linebreaks }}</a>
-                <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
-                <p>poroj: {{ propono.poroj }} ; malporoj : {{ propono.malporoj }} ; boneco: {{ propono.boneco }}</p>
-                <br/>
-                <br/>
-            </div>
-            {% empty %}
-            <div class="row">
-                <p>Ankoraŭ ne troviĝas proponoj :(</p>
-            </div>
-            {% endfor %}
-
-            <div class="row">
-                <a class="pull-left btn btn-primary" href="{% url 'proponaldonURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-plus-sign"> Proponi</span></a>
+                <div class="panel-body">
+                    <div class="list-group">
+                        {% for propono in radiko.proponoj.all|dictsortreversed:"boneco" %}
+                            <div class="list-group-item">
+                                <a class="pull-left btn btn-default btn-sm" href="{% url 'proponforigURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a class="pull-left btn btn-success btn-sm" href="{% url 'proponporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                                <a class="pull-left btn btn-danger btn-sm" href="{% url 'proponmalporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                                <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                                <a class="pull-left btn btn-link btn-sm" href="#">{{ propono.eraro|linebreaks }}</a>
+                                <!-- TODO : Krei propran klason kaj poste pligrandigi ĝin -->
+                                <p>poroj: {{ propono.poroj }} ; malporoj : {{ propono.malporoj }} ; boneco: {{ propono.boneco }}</p>
+                            </div>
+                        {% empty %}
+                            <div class="row">
+                                <p>Ankoraŭ ne troviĝas proponoj :(</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
