@@ -60,20 +60,17 @@ h1, h2, h3, h4 {
     line-height: 1.428571429;
 }
 
-.panel-green {
-    border-color: #5cb85c;
+
+.panel-radical {
+
 }
-.panel-green > .panel-heading {
-    border-color: #5cb85c;
+.panel-radical > .panel-heading {
+
     color: white;
-    background-color: #5cb85c;
+
 }
-.panel-green > a {
-    color: #5cb85c;
-}
-.panel-green > a:hover {
-    color: #3d8b3d;
-}
+
+
 
 /* Overrides list-group-item from Bootstrap */
 .list-group {
@@ -83,5 +80,7 @@ h1, h2, h3, h4 {
 
 .radiknomo {
     font-family: 'Ubuntu', sans-serif;
-    size: 30px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

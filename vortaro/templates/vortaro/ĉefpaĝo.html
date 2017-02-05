@@ -1,9 +1,9 @@
 {% extends 'vortaro/bazo.html' %}
 
+{% load vortaro_tags %}
 <!--
  TODO :
  - Krei klason por radiknomoj kaj proponnomoj
- - Ŝanĝi background-color depende de la boneco
  - Centrigi la butonojn
  - Meti atentigi kaj forigi dekstren
  - Komenti la butononjn (kiun oni povas vidi kiam oni superumas) (por helpi misvidantojn)
@@ -13,8 +13,8 @@
 {% block enhavo %}
     {% for radiko in radikoaro %}
         <div class="row">
-            <div class="panel panel-green">
-                <div class="panel-heading">
+            <div class="panel panel-radical" style="border-color:{{ radiko.boneco|boneckoloro }};">
+                <div class="panel-heading" style="background-color:{{ radiko.boneco|boneckoloro }}; border-color:{{ radiko.boneco|boneckoloro }};"> {{ radiko.boneco|boneckoloro }}
                     <a class="pull-left btn btn-default btn-circle" href="{% url 'radikforigURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-remove"></span></a>
                     <a class="pull-left btn btn-default btn-success btn-circle" href="{% url 'radikporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
                     <a class="pull-left btn btn-default btn-danger btn-circle" href="{% url 'radikmalporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
