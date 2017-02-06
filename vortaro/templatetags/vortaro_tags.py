@@ -7,4 +7,4 @@ register = template.Library()
 def boneckoloro(value):
     """Donas la kolortonon de la boneco de la Radiko/Propono"""
     kolortono = 120*(value)
-    return "hsl(" + str(kolortono) + " , 100%, 40%)"
+    return "hsl(" + str(kolortono) + " , 100%, 30%)"
