@@ -7,14 +7,17 @@
         <title>Bona Vortaro</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'css/bazo.css' %}">
     </head>
     <body>
-        <div class="page-header">
-            <h1><a href="{% url 'ĉefpaĝURLo' %}">Bona Vortaro</a></h1>
-            <a href="{% url 'aldonpaĝURLo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        </div>
+        <nav class="navbar navbar-light bg-faded">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                Bona Vortaro
+            </a>
+        </nav>
 
         <div class="content container">
             <div class="row">
