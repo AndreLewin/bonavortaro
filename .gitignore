@@ -4,6 +4,5 @@ __pycache__
 myvenv
 db.sqlite3
 /static
-/retejo/settings.py
 .DS_Store
 .idea
