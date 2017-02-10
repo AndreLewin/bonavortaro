@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'retejo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+# TODO: Uzi alian datumbazan pasvorton por la onta enreta servilo
 
 DATABASES = {
     'default': {
