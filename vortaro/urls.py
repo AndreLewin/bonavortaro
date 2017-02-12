@@ -13,5 +13,4 @@ urlpatterns = [
 
     url(r'^(?P<radikURLeraro>[^\/]+)/(?P<proponURLeraro>[^\/]+)/forigi/$', views.proponforigo, name='proponforigURLo'),
     url(r'^(?P<radikURLeraro>[^\/]+)/$', views.radikpaĝo, name='radikpaĝURLo'),
-    # TODO : Trovi kial radikpaĝoj ne plu funkcias
 ]
