@@ -9,7 +9,7 @@
     {% for radiko in radikoaro %}
         <div class="row">
             <div class="panel panel-radical">
-                <div class="panel-heading" style="background-color:{{ radiko.boneco|boneckoloro }};">
+                <div id="radikpanelo" class="panel-heading" style="background-color:{{ radiko.boneco|boneckoloro }};">
                     <a class="pull-left btn btn-default btn-success btn-circle" href="{% url 'radikporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
                     <a class="pull-left btn btn-default btn-danger btn-circle" href="{% url 'radikmalporURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                     <a class="pull-left btn btn-primary btn-circle" href="{% url 'proponaldonURLo' radikURLeraro=radiko.eraro %}"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     <div class="list-group">
                         {% for propono in radiko.proponoj.all|dictsortreversed:"boneco" %}
-                            <div class="list-group-item" style="background-color:{{ propono.boneco|boneckoloro }};">
+                            <div id="proponpanelo" class="list-group-item" style="background-color:{{ propono.boneco|boneckoloro }};">
                                 <a class="pull-left btn btn-success btn-sm" href="{% url 'proponporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
                                 <a class="pull-left btn btn-danger btn-sm" href="{% url 'proponmalporURLo' radikURLeraro=radiko.eraro proponURLeraro=propono.eraro %}"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                                 <a class="pull-left btn btn-info btn-sm" href="#"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
